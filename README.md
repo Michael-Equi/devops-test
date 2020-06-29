@@ -28,7 +28,7 @@ Second Container
   --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 \
   --volume jenkins-data:/var/jenkins_home \
   --volume jenkins-docker-certs:/certs/client:ro \
-  --publish 8080:8080 --publish 50000:50000 jenkinsci/blueocean`
+  --publish 6268:8080 --publish 50000:50000 jenkinsci/blueocean`
 
 
 Read more at https://www.jenkins.io/doc/book/installing/
