@@ -5,6 +5,10 @@ Testing revolutionary devops techniques
 
 [![CodeFactor](https://www.codefactor.io/repository/github/michael-equi/devops-test/badge)](https://www.codefactor.io/repository/github/michael-equi/devops-test)
 
+## Goal 
+
+From every github commit run a test in Jenkins that builds the ROS2 node and runs a gtest unit test script as well as a "integration" test that runs the node itself and scans the ROS2 topic. Build the docker file in Jenkins and push to Github. Update status of Dockerfile build, Jenkins build, and Jenkins tests banners. Create a coveragage report using gcov and push to codecov in order to include a banner that keeps track of unit test coverge. Find/develop system to report linter violations and crusty code that needs to be fixed. Linters are ament_cpplin, ament_uncrustify, and ament_cppcheck.  
+
 ## Configuration
 Use the VCS tool in order to import dependencies `vcs import < tool/deps.repos`
 
