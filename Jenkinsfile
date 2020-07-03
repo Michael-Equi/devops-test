@@ -3,7 +3,7 @@ return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[
 }
 
 pipeline {
-  agent { dockerfile {args '--entrypoint=\'\''}}
+  agent { dockerfile true }
 
     options {
       timeout(time: 1, unit: 'HOURS')
@@ -21,11 +21,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-              script {
-                docker.image("${GIT_COMMIT}").inside("""--entrypoint='/bin/bash'""") {
-                  sh "ls"
-                  sh "ros2"
-                }
+              // script {
+              //   docker.image("${GIT_COMMIT}").inside("""--entrypoint='/bin/bash'""") {
+              //     sh "ls"
+              //     sh "ros2"
+              //   }
+                sh "docker run -it ${GIT_COMMIT}"
                 echo "Building..."
                 sh "ros2"
                 echo "Done building"
