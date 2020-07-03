@@ -22,8 +22,11 @@ pipeline {
         stage('Build') {
             steps {
               script {
+                docker.image("${GIT_COMMIT}").inside("""--entrypoint='/bin/bash'""") {
+                  sh "ls"
+                  sh "ros2"
+                }
                 echo "Building..."
-                sh "ls"
                 sh "ros2"
                 echo "Done building"
               }
