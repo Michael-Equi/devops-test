@@ -24,6 +24,7 @@ pipeline {
               echo "Building..."
               sh "ls"
               sh "ros2"
+              echo "Done building"
             }
             post {
                 always {
