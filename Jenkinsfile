@@ -21,13 +21,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-              script {
-                dockerfile.image("${GIT_COMMIT}").inside("""--entrypoint='/bin/bash'""") {
-                  echo "Building..."
-                  sh "ls"
-                  sh "rosc"
-                }
-              }
+              // script {
+              //   dockerfile.image("${GIT_COMMIT}").inside("""--entrypoint='/bin/bash'""") {
+              //     echo "Building..."
+              //     sh "ls"
+              //     sh "rosc"
+              //   }
+              // }
+              sh "ls /"
             }
             post {
                 always {
