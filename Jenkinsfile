@@ -29,7 +29,7 @@ pipeline {
               //   }
               // }
               sh "ls /"
-              sh "source /opt/ros/foxy/setup.bash"
+              sh "/bin/bash source /opt/ros/foxy/setup.bash"
               sh "ros2"
             }
             post {
