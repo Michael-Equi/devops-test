@@ -3,7 +3,7 @@ return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[
 }
 
 pipeline {
-  agent { dockerfile {args "-t"}}
+  agent { dockerfile {args "-it"}}
 
     options {
       timeout(time: 1, unit: 'HOURS')
