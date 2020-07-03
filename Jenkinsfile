@@ -7,6 +7,7 @@ pipeline {
               script {
                       try {
                         echo 'Building..'
+                        sh false
                       } catch (Exception e) {
                           slackSend color: "danger", message: "Build failed on branch " + env.BRANCH_NAME + " at time ${new Date()}"
                       }
