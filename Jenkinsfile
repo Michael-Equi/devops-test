@@ -3,7 +3,7 @@ return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[
 }
 
 pipeline {
-  agent { dockerfile {args "-it"}}
+  agent any
 
     options {
       timeout(time: 1, unit: 'HOURS')
@@ -28,6 +28,7 @@ pipeline {
               //     sh "rosc"
               //   }
               // }
+              sh "docker run -it ${GIT_COMMIT}"
               sh "ls /"
               sh "/bin/bash"
               sh "source /opt/ros/foxy/setup.bash"
