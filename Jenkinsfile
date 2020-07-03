@@ -4,8 +4,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
-                slackSend color: "good", message: "Message from Jenkins Pipeline"
+              script {
+                      try {
+                        echo 'Building..'
+                      } catch (Exception e) {
+                          slackSend color: "danger", message: "build failed"
+                      }
+                }
+                slackSend color: "good", message: "build succeeded"
             }
         }
         stage('Test') {
