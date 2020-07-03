@@ -7,15 +7,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+              commit_message = sh "git log --format=%B -n 1 \"${GIT_COMMIT}\""
               script {
                       try {
                         echo 'Building..'
                       } catch (Exception e) {
-                          slackSend color: "danger", message: "Build failed on " + determineRepoName() + " on branch " + env.BRANCH_NAME + " on commit " + "${GIT_COMMIT}" + " with message " + sh "git log --format=%B -n 1 \"${GIT_COMMIT}\"" + " at time ${new Date()}"
+                          slackSend color: "danger", message: "Build failed on " + determineRepoName() + " on branch " + env.BRANCH_NAME + " on commit " + "${GIT_COMMIT}" + " with message " + commit_message + " at time ${new Date()}"
                           sh false
                       }
                 }
-                slackSend color: "good", message: "Build succeeded on " + determineRepoName() + " on branch " + env.BRANCH_NAME + " on commit " + "${GIT_COMMIT}" + " with message " + sh "git log --format=%B -n 1 \"${GIT_COMMIT}\"" + " at time ${new Date()}"
+                slackSend color: "good", message: "Build succeeded on " + determineRepoName() + " on branch " + env.BRANCH_NAME + " on commit " + "${GIT_COMMIT}" + " with message " + commit_message + " at time ${new Date()}"
             }
         }
         stage('Test') {
