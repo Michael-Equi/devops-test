@@ -1,10 +1,9 @@
+String determineRepoName() {
+return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
+}
+
 pipeline {
     agent any
-
-    String determineRepoName() {
-    return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
-    }
-
     stages {
         stage('Build') {
             steps {
