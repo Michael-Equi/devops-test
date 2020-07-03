@@ -10,7 +10,7 @@ pipeline {
               script {
                       try {
                         echo 'Building..'
-                        sh false
+                        echo "${GIT_COMMIT}"
                       } catch (Exception e) {
                           slackSend color: "danger", message: "Build failed on " + determineRepoName() + " on branch " + env.BRANCH_NAME + " at time ${new Date()}"
                           sh false
