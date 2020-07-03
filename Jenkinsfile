@@ -3,7 +3,7 @@ return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[
 }
 
 pipeline {
-  agent { dockerfile {args "-i --entrypoint=/bin/bash"}}
+  agent { dockerfile {args "-i --entrypoint=''"}}
 
     options {
       timeout(time: 1, unit: 'HOURS')
