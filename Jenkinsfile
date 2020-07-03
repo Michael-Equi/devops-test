@@ -3,7 +3,7 @@ return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[
 }
 
 pipeline {
-  agent { dockerfile {args "-it"}}
+  agent { dockerfile {args '--entrypoint=\'\''}}
 
     options {
       timeout(time: 1, unit: 'HOURS')
@@ -21,10 +21,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-              echo "Building..."
-              sh "ls"
-              sh "ros2"
-              echo "Done building"
+              script {
+                echo "Building..."
+                sh "ls"
+                sh "ros2"
+                echo "Done building"
+              }
             }
             post {
                 always {
