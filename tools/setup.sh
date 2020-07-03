@@ -1,4 +1,8 @@
 #!/bin/bash
 
 source /opt/ros/foxy/setup.bash
-ros2 --help
+
+cd /opt/br/node/src
+vcs import < /tools/deps.repos
+cd ..
+colcon build 
