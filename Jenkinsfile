@@ -29,11 +29,12 @@ pipeline {
                 try {
                     dockerImage.inside() {
                       sh "ls"
+                      sh "ros2"
                     }
 
                 } finally {
                     // Removing the docker image
-                    sh "docker rmi $registry:$BUILD_NUMBER"
+                    // sh "docker rmi $registry:$BUILD_NUMBER"
                 }
               }
             }
@@ -42,13 +43,13 @@ pipeline {
                       echo 'One way or another, I have finished'
                     }
                     success {
-                      slackSend color: "good", message: "The pipeline ${currentBuild.fullDisplayName} succeeded on " + determineRepoName() + " on branch " + env.BRANCH_NAME + " on commit " + "${GIT_COMMIT}" + " with message \"" + env.COMMIT_MESSAGE + "\" at time ${new Date()}"
+                      slackSend color: "good", message: "The pipeline ${currentBuild.fullDisplayName} succeeded on commit " + "${GIT_COMMIT}" + " with message \"" + env.COMMIT_MESSAGE + "\" at time ${new Date()}"
                     }
                     unstable {
                         echo 'I am unstable :/'
                     }
                     failure {
-                      slackSend color: "danger", message: "The pipeline ${currentBuild.fullDisplayName} failed on " + determineRepoName() + " on branch " + env.BRANCH_NAME + " on commit " + "${GIT_COMMIT}" + " with message \"" + env.COMMIT_MESSAGE + "\" at time ${new Date()}"
+                      slackSend color: "danger", message: "The pipeline ${currentBuild.fullDisplayName} failed on commit " + "${GIT_COMMIT}" + " with message \"" + env.COMMIT_MESSAGE + "\" at time ${new Date()}"
                     }
                     changed {
                         echo 'Things were different before...'
