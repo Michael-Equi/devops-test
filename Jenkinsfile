@@ -22,17 +22,19 @@ pipeline {
         stage('Build') {
             steps {
               echo "Building..."
-              // Building the Docker image
-              dockerImage = docker.build registry + ":$BUILD_NUMBER"
+              script {
+                // Building the Docker image
+                dockerImage = docker.build registry + ":$BUILD_NUMBER"
 
-              try {
-                  dockerImage.inside() {
-                    sh "ls"
-                  }
+                try {
+                    dockerImage.inside() {
+                      sh "ls"
+                    }
 
-              } finally {
-                  // Removing the docker image
-                  sh "docker rmi $registry:$BUILD_NUMBER"
+                } finally {
+                    // Removing the docker image
+                    sh "docker rmi $registry:$BUILD_NUMBER"
+                }
               }
             }
             post {
