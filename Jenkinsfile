@@ -3,7 +3,7 @@ return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[
 }
 
 pipeline {
-    agent any
+  agent { dockerfile true }
 
     options {
       timeout(time: 1, unit: 'HOURS')
@@ -22,21 +22,8 @@ pipeline {
         stage('Build') {
             steps {
               echo "Building..."
-              script {
-                // Building the Docker image
-                dockerImage = docker.build registry + ":$BUILD_NUMBER"
-
-                try {
-                    dockerImage.inside {
-                      sh "ls"
-                      sh "ros2"
-                    }
-
-                } finally {
-                    // Removing the docker image
-                    // sh "docker rmi $registry:$BUILD_NUMBER"
-                }
-              }
+              sh "ls"
+              sh "ros"
             }
             post {
                     always {
