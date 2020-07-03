@@ -14,21 +14,17 @@ pipeline {
                           script: 'git log --format=%B -n 1 \"${GIT_COMMIT}\"',
                           returnStdout: true
                           ).trim()
-                        }
+      // This registry is important for removing the image after the tests
+      registry = "bytesrobotics/test-node"
+    }
 
     stages {
         stage('Build') {
             steps {
-              // script {
-              //   docker.image("${GIT_COMMIT}").inside("""--entrypoint='/bin/bash'""") {
-              //     sh "ls"
-              //     sh "ros2"
-              //   }
-                sh "docker run -it ${GIT_COMMIT}"
-                echo "Building..."
-                sh "ros2"
-                echo "Done building"
-              }
+              echo "Building..."
+              sh "docker run -it ${GIT_COMMIT} /bin/bash"
+              sh "ls"
+              sh "rosc"
             }
             post {
                 always {
@@ -58,4 +54,5 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+    }
 }
