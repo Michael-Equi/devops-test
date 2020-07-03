@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-              String commit_message = sh "git log --format=%B -n 1 \"${GIT_COMMIT}\""
+              String commit_message = "${sh \"git log --format=%B -n 1 \"${GIT_COMMIT}\"\"}"
               script {
                       try {
                         echo 'Building..'
