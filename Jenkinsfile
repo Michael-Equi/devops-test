@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    String determineRepoName() {
+    return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
+    }
+
     stages {
         stage('Build') {
             steps {
@@ -12,7 +16,7 @@ pipeline {
                           sh false
                       }
                 }
-                slackSend color: "good", message: "Build succeeded on branch " + env.BRANCH_NAME + " at time ${new Date()}"
+                slackSend color: "good", message: "Build succeeded on " + determineRepoName() + " on branch " + env.BRANCH_NAME + " at time ${new Date()}"
             }
         }
         stage('Test') {
