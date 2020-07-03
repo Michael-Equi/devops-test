@@ -19,16 +19,25 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-              script {
-                      try {
-                        echo 'Building..'
-                      } catch (Exception e) {
-                          slackSend color: "danger", message: "Build failed on " + determineRepoName() + " on branch " + env.BRANCH_NAME + " on commit " + "${GIT_COMMIT}" + " with message \"" + env.COMMIT_MESSAGE + "\" at time ${new Date()}"
-                          sh false
-                      }
-                }
-                slackSend color: "good", message: "Build succeeded on " + determineRepoName() + " on branch " + env.BRANCH_NAME + " on commit " + "${GIT_COMMIT}" + " with message \"" + env.COMMIT_MESSAGE + "\" at time ${new Date()}"
+              echo "Building..."
             }
+            post {
+                    always {
+                      echo 'One way or another, I have finished'
+                    }
+                    success {
+                      slackSend color: "good", message: "Build succeeded on " + determineRepoName() + " on branch " + env.BRANCH_NAME + " on commit " + "${GIT_COMMIT}" + " with message \"" + env.COMMIT_MESSAGE + "\" at time ${new Date()}"
+                    }
+                    unstable {
+                        echo 'I am unstable :/'
+                    }
+                    failure {
+                      slackSend color: "danger", message: "Build failed on " + determineRepoName() + " on branch " + env.BRANCH_NAME + " on commit " + "${GIT_COMMIT}" + " with message \"" + env.COMMIT_MESSAGE + "\" at time ${new Date()}"
+                    }
+                    changed {
+                        echo 'Things were different before...'
+                    }
+                }
         }
         stage('Test') {
             steps {
