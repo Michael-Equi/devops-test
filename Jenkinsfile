@@ -27,7 +27,7 @@ pipeline {
                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
 
                 try {
-                    dockerImage.inside() {
+                    dockerImage.inside {
                       sh "ls"
                       sh "ros2"
                     }
