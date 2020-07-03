@@ -11,7 +11,7 @@ pipeline {
                       try {
                         echo 'Building..'
                         echo "${GIT_COMMIT}"
-                        git log --format=%B -n 1 "${GIT_COMMIT}"
+                        sh "git log --format=%B -n 1 \"${GIT_COMMIT}\""
                       } catch (Exception e) {
                           slackSend color: "danger", message: "Build failed on " + determineRepoName() + " on branch " + env.BRANCH_NAME + " at time ${new Date()}"
                           sh false
