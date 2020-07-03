@@ -23,7 +23,7 @@ pipeline {
             steps {
               echo "Building..."
               sh "ls"
-              sh "rosc"
+              sh "ros2"
             }
             post {
                 always {
