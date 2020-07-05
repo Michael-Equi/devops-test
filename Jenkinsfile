@@ -1,7 +1,3 @@
-String determineRepoName() {
-return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
-}
-
 pipeline {
   agent { dockerfile {args '-u root:root'} }
 
@@ -14,8 +10,6 @@ pipeline {
                           script: 'git log --format=%B -n 1 \"${GIT_COMMIT}\"',
                           returnStdout: true
                           ).trim()
-      // This registry is important for removing the image after the tests
-      registry = "bytesrobotics/test-node"
     }
 
     stages {
