@@ -7,4 +7,4 @@ cd /opt/br/node/src
 cd ..
 colcon build
 colcon test
-colcon test-results --all --verbose
+colcon test-result --all --verbose
