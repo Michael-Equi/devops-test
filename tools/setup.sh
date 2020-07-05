@@ -6,5 +6,3 @@ cd /opt/br/node/src
 # vcs import < /tools/deps.repos
 cd ..
 colcon build
-colcon test
-colcon test-result --all --verbose
