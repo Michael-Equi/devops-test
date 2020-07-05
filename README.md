@@ -11,7 +11,7 @@ master
 
 development
 
-
+[![Build Status](http://64.113.104.119:6268/buildStatus/icon?job=devops-test%2Fdevelopment)](http://64.113.104.119:6268/job/devops-test/job/development/)
 
 
 ## Goal 
