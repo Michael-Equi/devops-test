@@ -10,6 +10,9 @@ pipeline {
                           script: 'git log --format=%B -n 1 \"${GIT_COMMIT}\"',
                           returnStdout: true
                           ).trim()
+
+      COVERALLS_REPO_TOKEN = credentials("DEVOPS_TEST_COVERALLS_REPO_TOKEN")
+
     }
 
     stages {
@@ -39,8 +42,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh "echo ${DEVOPS_TEST_COVERALLS_REPO_TOKEN}"
-                sh "/tools/run_tests.sh ${DEVOPS_TEST_COVERALLS_REPO_TOKEN}"
+                sh "echo ${env.COVERALLS_REPO_TOKEN}"
+                sh "/tools/run_tests.sh ${env.COVERALLS_REPO_TOKEN}"
             }
             post {
                 success {
