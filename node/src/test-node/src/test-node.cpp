@@ -7,6 +7,7 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
+#include "test-node/incrementer.h"
 
 using namespace std::chrono_literals;
 
@@ -28,7 +29,8 @@ private:
   void timer_callback()
   {
     auto message = std_msgs::msg::String();
-    message.data = "Hello, world!! " + std::to_string(count_++);
+    count_ = increment(count_);
+    message.data = "Hello, world!! " + std::to_string(count_);
     RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
     publisher_->publish(message);
   }
