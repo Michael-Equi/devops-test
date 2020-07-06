@@ -1,4 +1,4 @@
 FROM osrf/ros2:nightly
 
-COPY ./node /opt/br/node
+COPY . /opt/br
 COPY ./tools /tools
