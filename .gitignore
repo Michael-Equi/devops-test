@@ -53,3 +53,6 @@ CATKIN_IGNORE
 examples
 install
 log
+/out/
+/coverage.info
+/node/src/test-node/cmake-build-debug/

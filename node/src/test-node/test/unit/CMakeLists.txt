@@ -1,0 +1,2 @@
+ament_add_gtest(incrementer_test incrementer_test.cpp)
+target_link_libraries(incrementer_test incrementer)
