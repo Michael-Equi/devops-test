@@ -39,8 +39,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh "/tools/run_gtest.sh"
-                sh "/tools/run_linting.sh"
+                sh "/tools/run_tests.sh"
             }
             post {
                 success {
