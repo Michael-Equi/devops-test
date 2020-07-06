@@ -9,6 +9,8 @@ master
 
 [![Build Status](http://64.113.104.119:6268/buildStatus/icon?job=devops-test%2Fmaster)](http://64.113.104.119:6268/job/devops-test/job/master/)
 
+[![Coverage Status](https://coveralls.io/repos/github/Michael-Equi/devops-test/badge.svg?branch=development)](https://coveralls.io/github/Michael-Equi/devops-test?branch=development)
+
 development
 
 [![Build Status](http://64.113.104.119:6268/buildStatus/icon?job=devops-test%2Fdevelopment)](http://64.113.104.119:6268/job/devops-test/job/development/)
