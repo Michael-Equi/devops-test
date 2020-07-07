@@ -19,6 +19,10 @@ find_package(ament_cmake REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
 
+set(dependencies
+    std_msgs
+    rclcpp)
+
 include_directories(include)
 
 add_library(incrementer SHARED
@@ -37,13 +41,14 @@ add_executable(node src/test-node.cpp)
 target_link_libraries(node
         incrementer)
 
-ament_target_dependencies(node rclcpp std_msgs)
+ament_target_dependencies(node ${dependencies})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   set(ament_cmake_copyright_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
   find_package(ament_cmake_gtest REQUIRED)
+  find_package(launch_testing_ament_cmake)
   add_subdirectory(test)
 endif()
 
