@@ -32,9 +32,6 @@ private:
     count_ = increment(count_);
     message.data = "Hello, world!! " + std::to_string(count_);
     RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
-    // std::cout << "f.Hello, world!! " << std::to_string(count_) << std::endl;
-    // std::cout << "[node-1] [INFO] [1594179542.574017815] [minimal_publisher]: Publishing: 'Hello, world!! " << std::to_string(count_) << "'" << std::endl;
-
     publisher_->publish(message);
   }
   rclcpp::TimerBase::SharedPtr timer_;
