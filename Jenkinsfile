@@ -42,7 +42,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh "/tools/run_tests.sh ${env.COVERALLS_REPO_TOKEN}"
+                sh "/tools/run_tests.sh"
+                sh "/tools/push_coverage.sh ${env.COVERALLS_REPO_TOKEN}"
             }
             post {
                 success {
