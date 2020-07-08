@@ -22,7 +22,7 @@ def generate_test_description():
     # This is necessary to get unbuffered output from the process under test
     proc_env = os.environ.copy()
     proc_env['RCUTILS_LOGGING_USE_STDOUT'] = '1'
-    proc_env['RCUTILS_LOGGING_BUFFERED_STREAM'] = '1'
+    proc_env['RCUTILS_LOGGING_BUFFERED_STREAM'] = '0'
 
     dut_process = launch.actions.ExecuteProcess(
         cmd=[cmd],
