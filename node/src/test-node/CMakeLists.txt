@@ -28,15 +28,16 @@ include_directories(include)
 add_library(incrementer SHARED
         src/incrementer.cpp)
 
-#target_include_directories(incrementer PUBLIC
-#        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/test-node>
-#        $<INSTALL_INTERFACE:include/test-node>)
+# properly install the library
+install(
+  TARGETS incrementer
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES DESTINATION include
+)
 
 add_executable(node src/test-node.cpp)
-
-#target_include_directories(node PUBLIC
-#        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/test-node>
-#        $<INSTALL_INTERFACE:include/test-node>)
 
 target_link_libraries(node
         incrementer)
