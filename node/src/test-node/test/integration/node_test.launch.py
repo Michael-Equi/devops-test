@@ -65,5 +65,5 @@ class TestProcessOutput(unittest.TestCase):
         # happened in the same order that it's checked
         with assertSequentialStdout(proc_output, dut_process) as cm:
             cm.assertInStdout('Starting Up')
-            for n in range(1, 4):
+            for n in range(0, 4):
                 cm.assertInStdout('Hello, world!! {}'.format(n))
