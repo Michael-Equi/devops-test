@@ -31,10 +31,6 @@ private:
   rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
 };
 
-TEST(integration_test, node_integration) {
-  EXPECT_EQ(10, 10);
-}
-
 int main(int argc, char ** argv)
 {
   rclcpp::init(argc, argv);
@@ -47,5 +43,5 @@ int main(int argc, char ** argv)
   // rclcpp::spin(node);
   rclcpp::shutdown();
 
-  return 0;
+  return ret;
 }

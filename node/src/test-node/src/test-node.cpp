@@ -31,7 +31,8 @@ private:
     auto message = std_msgs::msg::String();
     count_ = increment(count_);
     message.data = "Hello, world!! " + std::to_string(count_);
-    RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
+    // RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
+    std::cout << "Hello, world!! " << std::to_string(count_) << std::endl;
     publisher_->publish(message);
   }
   rclcpp::TimerBase::SharedPtr timer_;
@@ -42,6 +43,7 @@ private:
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
+  std::cout << "Starting Up" << std::endl;
   rclcpp::spin(std::make_shared<MinimalPublisher>());
   rclcpp::shutdown();
   return 0;
