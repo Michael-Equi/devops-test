@@ -46,10 +46,10 @@ class TestGoodProcess(unittest.TestCase):
     def test_count_to_four(self, proc_output):
         # This will match stdout from any process.  In this example there is only one process
         # running
+        proc_output.assertWaitFor('Hello, world!! 1', timeout=10, stream='stdout')
         proc_output.assertWaitFor('Hello, world!! 2', timeout=10, stream='stdout')
         proc_output.assertWaitFor('Hello, world!! 3', timeout=10, stream='stdout')
         proc_output.assertWaitFor('Hello, world!! 4', timeout=10, stream='stdout')
-        proc_output.assertWaitFor('Hello, world!! 5', timeout=10, stream='stdout')
 
 
 @launch_testing.post_shutdown_test()
@@ -65,5 +65,5 @@ class TestProcessOutput(unittest.TestCase):
         # happened in the same order that it's checked
         with assertSequentialStdout(proc_output, dut_process) as cm:
             cm.assertInStdout('Starting Up')
-            for n in range(1, 4):
+            for n in range(0, 4):
                 cm.assertInStdout('Hello, world!! {}'.format(n))
